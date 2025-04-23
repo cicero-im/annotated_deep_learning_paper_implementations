@@ -12,9 +12,8 @@ using a binary segment tree.
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/labmlai/annotated_deep_learning_paper_implementations/blob/master/labml_nn/rl/dqn/experiment.ipynb)
 """
 
-import random
-
 import numpy as np
+import secrets
 
 
 class ReplayBuffer:
@@ -230,7 +229,7 @@ class ReplayBuffer:
 
         # Get sample indexes
         for i in range(batch_size):
-            p = random.random() * self._sum()
+            p = secrets.SystemRandom().random() * self._sum()
             idx = self.find_prefix_sum_idx(p)
             samples['indexes'][i] = idx
 

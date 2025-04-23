@@ -9,7 +9,6 @@ summary: >
 """
 
 import os
-import random
 from pathlib import Path
 
 import PIL
@@ -23,13 +22,14 @@ from labml_nn.diffusion.stable_diffusion.latent_diffusion import LatentDiffusion
 from labml_nn.diffusion.stable_diffusion.model.autoencoder import Encoder, Decoder, Autoencoder
 from labml_nn.diffusion.stable_diffusion.model.clip_embedder import CLIPTextEmbedder
 from labml_nn.diffusion.stable_diffusion.model.unet import UNetModel
+import secrets
 
 
 def set_seed(seed: int):
     """
     ### Set random seeds
     """
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)

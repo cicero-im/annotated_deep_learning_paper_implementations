@@ -33,7 +33,6 @@ We also have a Google Colab notebook.
 """
 
 import itertools
-import random
 import zipfile
 from typing import Tuple
 
@@ -51,6 +50,7 @@ from labml.utils.download import download_file
 from labml.utils.pytorch import get_modules
 from labml_helpers.device import DeviceConfigs
 from labml_helpers.module import Module
+import secrets
 
 
 class GeneratorResNet(Module):
@@ -294,8 +294,8 @@ class ReplayBuffer:
                 self.data.append(element)
                 res.append(element)
             else:
-                if random.uniform(0, 1) > 0.5:
-                    i = random.randint(0, self.max_size - 1)
+                if secrets.SystemRandom().uniform(0, 1) > 0.5:
+                    i = secrets.SystemRandom().randint(0, self.max_size - 1)
                     res.append(self.data[i].clone())
                     self.data[i] = element
                 else:
