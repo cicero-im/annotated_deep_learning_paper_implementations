@@ -5,6 +5,7 @@ from xml.dom import minidom
 import os
 
 from labml import monit
+import defusedxml.minidom
 
 HOME = Path('.').absolute()
 
@@ -197,7 +198,7 @@ def add_classes(doc: minidom.Document):
 
 
 def parse(source: Path, dest: Path):
-    doc: minidom.Document = minidom.parse(str(source))
+    doc: minidom.Document = defusedxml.minidom.parse(str(source))
 
     svg = doc.getElementsByTagName('svg')
 

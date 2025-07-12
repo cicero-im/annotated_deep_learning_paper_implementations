@@ -27,7 +27,8 @@ setuptools.setup(
                       'torchvision',
                       'einops',
                       'numpy',
-                      'fairscale'],
+                      'fairscale',
+                      "defusedxml==0.7.1",],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
