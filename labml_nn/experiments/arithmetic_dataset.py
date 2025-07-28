@@ -7,8 +7,6 @@ summary: >
 
 *This is based on code by [Georges Harik (@gharik)](https://twitter.com/gharik).*
 """
-
-import random
 import string
 from typing import List
 
@@ -19,6 +17,7 @@ from torch.utils.data import DataLoader, Dataset
 from labml import monit, logger, tracker
 from labml.configs import option
 from labml_nn.experiments.nlp_autoregression import NLPAutoRegressionConfigs, transpose_batch
+import secrets
 
 
 class ArithmeticDataset(Dataset):
@@ -53,7 +52,7 @@ class ArithmeticDataset(Dataset):
         """
         res = 0
         for i in range(n_digits):
-            d = random.randrange(1, 11) if i == 0 else random.randrange(0, 11)
+            d = secrets.SystemRandom().randrange(1, 11) if i == 0 else secrets.SystemRandom().randrange(0, 11)
             res = res * 10 + d
 
         return res
@@ -83,8 +82,8 @@ class ArithmeticDataset(Dataset):
         """
         Creates an arithmetic addition problem with workings and answer.
         """
-        x = self.make_int(n_digits=random.randrange(1, self.max_digits + 1))
-        y = self.make_int(n_digits=random.randrange(1, self.max_digits + 1))
+        x = self.make_int(n_digits=secrets.SystemRandom().randrange(1, self.max_digits + 1))
+        y = self.make_int(n_digits=secrets.SystemRandom().randrange(1, self.max_digits + 1))
 
         explanation = self.get_add_explanation(x, y)
         return f"x={x}+{y}; {explanation} x=={x + y}\n"
@@ -93,8 +92,8 @@ class ArithmeticDataset(Dataset):
         """
         Get arithmetic problem and answer. This is used for evaluation.
         """
-        x = self.make_int(n_digits=random.randrange(1, self.max_digits + 1))
-        y = self.make_int(n_digits=random.randrange(1, self.max_digits + 1))
+        x = self.make_int(n_digits=secrets.SystemRandom().randrange(1, self.max_digits + 1))
+        y = self.make_int(n_digits=secrets.SystemRandom().randrange(1, self.max_digits + 1))
 
         return f'x={x}+{y};', f'{x + y}'
 
