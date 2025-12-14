@@ -10,3 +10,4 @@ gym[atari]
 opencv-python
 Pillow>=6.2.1
 faiss
+fonttools>=4.61.0 # not directly required, pinned by Snyk to avoid a vulnerability
